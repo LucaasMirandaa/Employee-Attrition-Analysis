@@ -1,0 +1,47 @@
+# Virtual Environments (Ambientes Virtuais)
+venv/
+.venv/
+env/
+ENV/
+
+# Security & Credentials (Evita vazamento de chaves de API, tokens e senhas)
+.env
+.env.local
+.env.*
+*.pem
+*.key
+*.cert
+credentials*.json
+secrets*.py
+config.local.json
+config.local.ini
+
+# Python bytecode and caches (Evita poluição de repositório)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Databases & local data stores (Banco de dados locais/temporários)
+*.db
+*.sqlite
+*.sqlite3
+
+# OS system files (Arquivos temporários do Sistema Operacional)
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Power BI & Office temporary files (Evita travar arquivos temporários em uso)
+*.tmp
+~$*
+
+# Dataset
+data/bronze/HR_Analytics.csv
