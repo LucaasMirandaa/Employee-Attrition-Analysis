@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Attrition Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --paper: #F5F4F0;
+            --surface: #FFFFFF;
+            --ink: #1C1B18;
+            --ink-2: #5C5B57;
+            --ink-3: #9B9A95;
+            --rule: #E2E0D9;
+            --live: #0B6E4F;
+            --live-bg: #EAF5F0;
+            --amber: #8B6914;
+            --amber-bg: #F8F3E6;
+            --pending: #6B6560;
+            --pending-bg: #F0EFEB;
+            --mono: 'DM Mono', monospace;
+            --sans: 'Inter', system-ui, sans-serif;
+            --r: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 15px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrap {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .site-header {
+            padding: 3.5rem 0 2.5rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .header-meta {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--ink-3);
+            margin-bottom: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .header-meta span {
+            color: var(--ink-2);
+        }
+
+        .site-title {
+            font-family: var(--mono);
+            font-size: clamp(1.75rem, 5vw, 2.75rem);
+            font-weight: 500;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+
+        .site-desc {
+            font-size: 15px;
+            color: var(--ink-2);
+            max-width: 560px;
+            line-height: 1.75;
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 1.5rem;
+            align-items: center;
+        }
+
+        .stack-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-right: 4px;
+        }
+
+        .pill {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--ink-2);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: 3px 9px;
+            border-radius: 2px;
+            letter-spacing: 0.01em;
+        }
+
+        .status-flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--amber);
+            background: var(--amber-bg);
+            border: 1px solid #DFC98A;
+            padding: 3px 10px;
+            border-radius: 2px;
+            margin-left: 4px;
+        }
+
+        .blink {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: blink 1.8s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        .pipeline-section {
+            padding: 2.5rem 0 2rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .pipeline-track {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-top: 1.75rem;
+            position: relative;
+        }
+
+        .pipeline-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .pipeline-node:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: calc(50% + 20px);
+            right: calc(-50% + 20px);
+            height: 1px;
+            background: var(--rule);
+        }
+
+        .pipeline-node.done::after {
+            background: var(--live);
+            opacity: 0.5;
+        }
+
+        .pipeline-node.active::after {
+            background: linear-gradient(to right, rgba(11, 110, 79, 0.4), var(--rule));
+        }
+
+        .node-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--rule);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pipeline-node.done .node-circle {
+            border-color: var(--live);
+            background: var(--live-bg);
+        }
+
+        .pipeline-node.active .node-circle {
+            border-color: var(--amber);
+            background: var(--amber-bg);
+        }
+
+        .pipeline-node.pending .node-circle {
+            border-color: var(--rule);
+            background: var(--paper);
+        }
+
+        .node-check {
+            width: 12px;
+            height: 12px;
+            stroke: var(--live);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .node-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: blink 1.8s ease-in-out infinite;
+        }
+
+        .node-empty {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--rule);
+        }
+
+        .node-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--ink-3);
+            margin-top: 8px;
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .pipeline-node.done .node-label {
+            color: var(--live);
+        }
+
+        .pipeline-node.active .node-label {
+            color: var(--amber);
+        }
+
+        .node-phase {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--ink-3);
+            margin-top: 3px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .section {
+            padding: 2.5rem 0 2rem;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 1.5rem;
+        }
+
+        .browser-chrome {
+            border: 1px solid var(--rule);
+            border-radius: var(--r);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 12px;
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .browser-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .browser-url {
+            flex: 1;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--ink-3);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 3px 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .browser-chrome iframe {
+            display: block;
+            width: 100%;
+            height: 620px;
+            border: none;
+        }
+
+        .body-copy {
+            font-size: 15px;
+            color: var(--ink-2);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        .obj-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--rule);
+            border-radius: var(--r);
+            overflow: hidden;
+        }
+
+        .obj-cell {
+            padding: 1.25rem 1.4rem;
+            background: var(--surface);
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .obj-cell:nth-child(2n) {
+            border-right: none;
+        }
+
+        .obj-cell:nth-child(3),
+        .obj-cell:nth-child(4) {
+            border-bottom: none;
+        }
+
+        .obj-head {
+            font-family: var(--mono);
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+        }
+
+        .obj-body {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.65;
+        }
+
+        .arch-block {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-radius: var(--r);
+            padding: 1.5rem 1.75rem;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            line-height: 2.1;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .t-tree {
+            color: var(--ink-3);
+        }
+
+        .t-dir {
+            color: var(--ink);
+        }
+
+        .t-file {
+            color: var(--ink-2);
+        }
+
+        .t-note {
+            color: var(--ink-3);
+            font-size: 11px;
+        }
+
+        .t-br {
+            color: #A0662A;
+        }
+
+        .t-si {
+            color: #607080;
+        }
+
+        .t-go {
+            color: var(--amber);
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .tech-table thead tr {
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .tech-table th {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-3);
+            padding: 0 0 0.6rem;
+            text-align: left;
+        }
+
+        .tech-table th:not(:first-child) {
+            padding-left: 2rem;
+        }
+
+        .tech-table tbody tr {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .tech-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .tech-table td {
+            padding: 0.75rem 0;
+            color: var(--ink-2);
+            vertical-align: top;
+        }
+
+        .tech-table td:not(:first-child) {
+            padding-left: 2rem;
+        }
+
+        .tech-table td:first-child {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        .tech-libs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .lib-tag {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--ink);
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            padding: 2px 7px;
+            border-radius: 2px;
+        }
+
+        .roadmap-list {
+            list-style: none;
+            position: relative;
+        }
+
+        .roadmap-list::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 10px;
+            bottom: 10px;
+            width: 1px;
+            background: var(--rule);
+        }
+
+        .rm-item {
+            display: grid;
+            grid-template-columns: 20px 1fr;
+            gap: 0 1.25rem;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+
+        .rm-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .rm-dot {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            border: 1.5px solid var(--rule);
+            background: var(--paper);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rm-dot.done {
+            border-color: var(--live);
+            background: var(--live-bg);
+        }
+
+        .rm-dot.active {
+            border-color: var(--amber);
+            background: var(--amber-bg);
+        }
+
+        .rm-dot.pending {
+            border-color: var(--rule);
+            background: var(--paper);
+        }
+
+        .rm-check {
+            width: 9px;
+            height: 9px;
+            stroke: var(--live);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .rm-blink {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: blink 1.8s ease-in-out infinite;
+        }
+
+        .rm-body {
+            padding-top: 0;
+        }
+
+        .rm-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .rm-phase {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--ink-3);
+        }
+
+        .rm-title {
+            font-family: var(--mono);
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .rm-item.pending .rm-title {
+            color: var(--ink-3);
+            font-weight: 400;
+        }
+
+        .rm-tag {
+            font-family: var(--mono);
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 2px;
+            letter-spacing: 0.04em;
+        }
+
+        .rm-tag.done {
+            color: var(--live);
+            background: var(--live-bg);
+            border: 1px solid rgba(11, 110, 79, 0.2);
+        }
+
+        .rm-tag.active {
+            color: var(--amber);
+            background: var(--amber-bg);
+            border: 1px solid #DFC98A;
+        }
+
+        .rm-tag.pending {
+            color: var(--pending);
+            background: var(--pending-bg);
+            border: 1px solid var(--rule);
+        }
+
+        .rm-tasks {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .rm-task {
+            font-size: 13px;
+            color: var(--ink-2);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.55;
+        }
+
+        .rm-task::before {
+            content: '—';
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--rule);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .rm-item.pending .rm-task {
+            color: var(--ink-3);
+        }
+
+        @media (max-width: 600px) {
+            .wrap {
+                padding: 0 1.1rem;
+            }
+
+            .obj-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .obj-cell:nth-child(2n) {
+                border-right: none;
+            }
+
+            .obj-cell:nth-child(3) {
+                border-bottom: 1px solid var(--rule);
+            }
+
+            .obj-cell:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .browser-chrome iframe {
+                height: 460px;
+            }
+
+            .pipeline-track {
+                gap: 0;
+            }
+
+            .node-label {
+                font-size: 9px;
+                max-width: 60px;
+            }
+
+            .tech-table td:not(:first-child) {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+        <header class="site-header">
+            <p class="header-meta">Análise e predição de dados &nbsp;/&nbsp; <span>Employee Attrition</span></p>
+            <h1 class="site-title">Employee<br>Attrition Analysis</h1>
+            <p class="site-desc">
+                Solução completa para entender a rotatividade de talentos, identificar fatores de risco e fornecer
+                insights acionáveis para Recursos Humanos.
+            </p>
+            <div class="stack">
+                <span class="stack-label">Stack</span>
+                <span class="pill">Python 3.9+</span>
+                <span class="pill">Power BI</span>
+                <span class="pill">Pandas</span>
+                <span class="pill">Scikit-learn</span>
+                <span class="pill">Matplotlib</span>
+                <span class="pill">Seaborn</span>
+                <span class="pill">Jupyter</span>
+                <span class="status-flag"><span class="blink"></span>Em desenvolvimento</span>
+            </div>
+        </header>
+
+        <div class="pipeline-section">
+            <p class="sec-label">Pipeline de dados</p>
+            <div class="pipeline-track">
+
+                <div class="pipeline-node done">
+                    <div class="node-circle">
+                        <svg class="node-check" viewBox="0 0 12 12">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg>
+                    </div>
+                    <span class="node-label">Bronze</span>
+                    <span class="node-phase">Ingestão</span>
+                </div>
+
+                <div class="pipeline-node done">
+                    <div class="node-circle">
+                        <svg class="node-check" viewBox="0 0 12 12">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg>
+                    </div>
+                    <span class="node-label">BI Layer</span>
+                    <span class="node-phase">Dashboard</span>
+                </div>
+
+                <div class="pipeline-node active">
+                    <div class="node-circle">
+                        <span class="node-dot"></span>
+                    </div>
+                    <span class="node-label">EDA</span>
+                    <span class="node-phase">Explorando</span>
+                </div>
+
+                <div class="pipeline-node pending">
+                    <div class="node-circle">
+                        <span class="node-empty"></span>
+                    </div>
+                    <span class="node-label">Silver</span>
+                    <span class="node-phase">Limpeza</span>
+                </div>
+
+                <div class="pipeline-node pending">
+                    <div class="node-circle">
+                        <span class="node-empty"></span>
+                    </div>
+                    <span class="node-label">Gold</span>
+                    <span class="node-phase">Features</span>
+                </div>
+
+                <div class="pipeline-node pending">
+                    <div class="node-circle">
+                        <span class="node-empty"></span>
+                    </div>
+                    <span class="node-label">Modelo ML</span>
+                    <span class="node-phase">Predição</span>
+                </div>
+
+                <div class="pipeline-node pending">
+                    <div class="node-circle">
+                        <span class="node-empty"></span>
+                    </div>
+                    <span class="node-label">Deploy</span>
+                    <span class="node-phase">Streamlit</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Dashboard — Power BI</p>
+            <div class="browser-chrome">
+                <div class="browser-bar">
+                    <span class="browser-dot" style="background:#FF5F57;"></span>
+                    <span class="browser-dot" style="background:#FEBC2E;"></span>
+                    <span class="browser-dot" style="background:#28C840;"></span>
+                    <span class="browser-url">app.powerbi.com &middot; HR Analytics Report</span>
+                </div>
+                <iframe title="HR Analytics Dashboard"
+                    src="https://app.powerbi.com/reportEmbed?reportId=df046530-7bf9-45e7-84f5-49835a33f354&autoAuth=true&ctid=da49a844-e2e3-40af-86a6-c3819d704f49"
+                    allowFullScreen="true">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Contexto de negócio</p>
+            <p class="body-copy">
+                A rotatividade de funcionários representa um dos desafios mais custosos para qualquer organização. Além
+                dos custos diretos de demissão, recrutamento e treinamento, a perda de talentos-chave impacta a
+                produtividade, a moral das equipes e a preservação do conhecimento institucional.
+            </p>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Objetivos</p>
+            <div class="obj-grid">
+                <div class="obj-cell">
+                    <p class="obj-head">Perfis de risco</p>
+                    <p class="obj-body">Identificar variáveis demográficas e corporativas correlacionadas com a saída de
+                        funcionários.</p>
+                </div>
+                <div class="obj-cell">
+                    <p class="obj-head">Fatores críticos</p>
+                    <p class="obj-body">Investigar o impacto de horas extras, distância do trabalho, nível de cargo e
+                        satisfação com o ambiente.</p>
+                </div>
+                <div class="obj-cell">
+                    <p class="obj-head">Engenharia Medallion</p>
+                    <p class="obj-body">Pipeline reproduzível movendo dados da camada Bronze à Gold com integridade e
+                        governança.</p>
+                </div>
+                <div class="obj-cell">
+                    <p class="obj-head">Classificador preditivo</p>
+                    <p class="obj-body">Modelo supervisionado para estimar a probabilidade de um colaborador deixar a
+                        empresa.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Estrutura do projeto</p>
+            <div class="arch-block"><span class="t-dir">Employee-Attrition-Analysis/</span>
+                <span class="t-tree">├── </span><span class="t-dir">data/</span>
+                <span class="t-tree">│ ├── </span><span class="t-br">bronze/</span><span class="t-note"> ← dados brutos
+                    originais (HR_Analytics.csv)</span>
+                <span class="t-tree">│ ├── </span><span class="t-si">silver/</span><span class="t-note"> ← dados limpos
+                    e pré-processados</span>
+                <span class="t-tree">│ └── </span><span class="t-go">gold/</span><span class="t-note"> ← tabelas
+                    otimizadas para BI e modelagem</span>
+                <span class="t-tree">├── </span><span class="t-dir">notebooks/</span>
+                <span class="t-tree">│ └── </span><span class="t-file">01_eda.ipynb</span><span class="t-note"> ←
+                    análise exploratória</span>
+                <span class="t-tree">├── </span><span class="t-dir">src/</span><span class="t-note"> ← módulos Python
+                    (ETL, modelagem, utils)</span>
+                <span class="t-tree">└── </span><span class="t-file">README.md</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Tecnologias</p>
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Área</th>
+                        <th>Ferramentas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Business Intelligence</td>
+                        <td>
+                            <div class="tech-libs">
+                                <span class="lib-tag">Power BI</span>
+                                <span class="lib-tag">DAX</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Análise &amp; EDA</td>
+                        <td>
+                            <div class="tech-libs">
+                                <span class="lib-tag">Pandas</span>
+                                <span class="lib-tag">Matplotlib</span>
+                                <span class="lib-tag">Seaborn</span>
+                                <span class="lib-tag">Jupyter</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Machine Learning</td>
+                        <td>
+                            <div class="tech-libs">
+                                <span class="lib-tag">Scikit-learn</span>
+                                <span class="lib-tag">XGBoost</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <p class="sec-label">Roadmap</p>
+            <ul class="roadmap-list">
+
+                <li class="rm-item done">
+                    <div class="rm-dot done">
+                        <svg class="rm-check" viewBox="0 0 10 10">
+                            <polyline points="2,5 4.5,7.5 9,2.5" />
+                        </svg>
+                    </div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 1</span>
+                            <span class="rm-title">Ingestão de dados &amp; estruturação</span>
+                            <span class="rm-tag done">Concluída</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Configuração da estrutura de pastas do projeto</span>
+                            <span class="rm-task">Armazenamento do dataset original na camada bronze</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="rm-item done">
+                    <div class="rm-dot done">
+                        <svg class="rm-check" viewBox="0 0 10 10">
+                            <polyline points="2,5 4.5,7.5 9,2.5" />
+                        </svg>
+                    </div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 2</span>
+                            <span class="rm-title">Business Intelligence</span>
+                            <span class="rm-tag done">Concluída</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Modelagem dos dados e criação do dashboard Power BI</span>
+                            <span class="rm-task">Incorporação do relatório interativo no portfólio</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="rm-item active">
+                    <div class="rm-dot active">
+                        <span class="rm-blink"></span>
+                    </div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 3</span>
+                            <span class="rm-title">Análise Exploratória (EDA)</span>
+                            <span class="rm-tag active">Em progresso</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Análise estatística descritiva em notebooks/01_eda.ipynb</span>
+                            <span class="rm-task">Identificação de correlações e padrões iniciais de atrito</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="rm-item pending">
+                    <div class="rm-dot pending"></div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 4</span>
+                            <span class="rm-title">Pipeline de engenharia</span>
+                            <span class="rm-tag pending">Pendente</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Scripts Python para limpeza e tratamento (Bronze → Silver →
+                                Gold)</span>
+                            <span class="rm-task">Feature Engineering para criação de novas variáveis</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="rm-item pending">
+                    <div class="rm-dot pending"></div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 5</span>
+                            <span class="rm-title">Modelagem preditiva</span>
+                            <span class="rm-tag pending">Pendente</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Treinamento com Random Forest, Regressão Logística e XGBoost</span>
+                            <span class="rm-task">Otimização de hiperparâmetros e avaliação (Precisão, Recall,
+                                F1-Score)</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="rm-item pending">
+                    <div class="rm-dot pending"></div>
+                    <div class="rm-body">
+                        <div class="rm-header">
+                            <span class="rm-phase">Fase 6</span>
+                            <span class="rm-title">Implantação &amp; Web App</span>
+                            <span class="rm-tag pending">Pendente</span>
+                        </div>
+                        <div class="rm-tasks">
+                            <span class="rm-task">Aplicação Streamlit para simulação de risco em tempo real</span>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>
