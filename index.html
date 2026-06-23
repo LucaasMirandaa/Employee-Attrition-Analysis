@@ -885,6 +885,19 @@
             color: var(--ink-3);
         }
 
+        .pbi-preview-wrap {
+            overflow: hidden;
+            background: #09090B;
+            position: relative;
+            /* Container sized to match the scaled-down canvas */
+            height: calc(1250px * (var(--pbi-scale, 0.505)));
+        }
+
+        .pbi-preview-wrap > div {
+            transform-origin: top left;
+            transform: scale(var(--pbi-scale, 0.505));
+        }
+
         @media (max-width: 600px) {
             .wrap {
                 padding: 0 1.1rem;
@@ -924,6 +937,22 @@
             }
         }
     </style>
+    <script>
+        /* Dynamically compute the scale for the Power BI preview so it
+           fills the browser-chrome container width at any viewport. */
+        (function () {
+            function setPbiScale() {
+                var wrap = document.querySelector('.pbi-preview-wrap');
+                if (!wrap) return;
+                var containerW = wrap.parentElement.clientWidth;
+                var scale = containerW / 1496;
+                wrap.style.setProperty('--pbi-scale', scale);
+                wrap.style.height = (1250 * scale) + 'px';
+            }
+            document.addEventListener('DOMContentLoaded', setPbiScale);
+            window.addEventListener('resize', setPbiScale);
+        })();
+    </script>
 </head>
 
 <body>
@@ -973,25 +1002,29 @@
                     <span class="node-phase">Dashboard</span>
                 </div>
 
-                <div class="pipeline-node active">
+                <div class="pipeline-node done">
                     <div class="node-circle">
-                        <span class="node-dot"></span>
+                        <svg class="node-check" viewBox="0 0 12 12">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg>
                     </div>
                     <span class="node-label">EDA</span>
-                    <span class="node-phase">Explorando</span>
+                    <span class="node-phase">Explorado</span>
                 </div>
 
-                <div class="pipeline-node pending">
+                <div class="pipeline-node done">
                     <div class="node-circle">
-                        <span class="node-empty"></span>
+                        <svg class="node-check" viewBox="0 0 12 12">
+                            <polyline points="2,6 5,9 10,3" />
+                        </svg>
                     </div>
                     <span class="node-label">Silver</span>
                     <span class="node-phase">Limpeza</span>
                 </div>
 
-                <div class="pipeline-node pending">
+                <div class="pipeline-node active">
                     <div class="node-circle">
-                        <span class="node-empty"></span>
+                        <span class="node-dot"></span>
                     </div>
                     <span class="node-label">Gold</span>
                     <span class="node-phase">Features</span>
@@ -1474,6 +1507,159 @@
         </div>
 
         <div class="section">
+            <p class="sec-label">Design do relatório — Power BI</p>
+            <p class="body-copy" style="margin-bottom: 1.5rem;">
+                Wireframe original utilizado para estruturar o relatório no Power BI, definindo layout, hierarquia
+                visual e agrupamento das análises antes da construção final no serviço.
+            </p>
+            <div class="browser-chrome">
+                <div class="browser-bar">
+                    <span class="browser-dot" style="background:#FF5F57;"></span>
+                    <span class="browser-dot" style="background:#FEBC2E;"></span>
+                    <span class="browser-dot" style="background:#28C840;"></span>
+                    <span class="browser-url">power_bi.html &middot; HR Analytics · Wireframe Layout</span>
+                </div>
+                <style>
+                    /* Scoped styles for the Power BI wireframe preview */
+                    .pbi-card { position: absolute; border-radius: 14px; background: linear-gradient(180deg, #FFFFFF, #F4F4F5); box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 24px 60px -18px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.07); overflow: visible; }
+                    .pbi-st { position: absolute; left: 0; top: 0; width: 100%; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; }
+                    .pbi-st::after { content: ''; position: absolute; left: 18px; right: 18px; bottom: 0; height: 1px; background: linear-gradient(90deg, #E4E4E7, rgba(228,228,231,0)); }
+                    .pbi-ti { font-size: 15px; font-weight: 300; color: #18181B; letter-spacing: .01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+                    .pbi-tg { font-size: 8px; font-weight: 700; letter-spacing: .14em; color: #3F3F46; background: rgba(63,63,70,.08); border: 1px solid rgba(63,63,70,.25); padding: 3px 9px; border-radius: 99px; }
+                    .pbi-tg.sq { color: #52525B; background: rgba(82,82,91,.08); border-color: rgba(82,82,91,.30); }
+                    .pbi-ch { position: absolute; top: 11px; height: 22px; display: inline-flex; align-items: center; padding: 0 11px; border-radius: 99px; font-size: 8px; font-weight: 700; letter-spacing: .13em; cursor: default; }
+                    .pbi-sw { right: 118px; color: #52525B; border: 1px solid rgba(82,82,91,.38); background: rgba(82,82,91,.05); }
+                    .pbi-sw:hover { background: #3F3F46; color: #FFFFFF; box-shadow: 0 0 20px rgba(63,63,70,.3); }
+                    .pbi-ht { right: 14px; color: #71717A; border: 1px solid rgba(113,113,122,.32); background: rgba(113,113,122,.05); }
+                    .pbi-ht:hover { background: #18181B; color: #FFFFFF; border-color: #18181B; box-shadow: 0 0 16px rgba(24,24,27,.35); }
+                    .pbi-pn { position: absolute; left: 0; width: 100%; bottom: -86px; height: 80px; padding: 10px 20px 10px 78px; overflow: hidden; border-radius: 12px; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; pointer-events: none; background: linear-gradient(135deg, rgba(24,24,27,.96), rgba(39,39,42,.94)); box-shadow: 0 10px 34px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12); z-index: 6; }
+                    .pbi-pn::before { content: ''; position: absolute; left: 12px; top: 50%; width: 60px; height: 60px; margin-top: -30px; border-radius: 50%; border: 9px solid transparent; border-left-color: #71717A; border-bottom-color: #71717A; transform: rotate(45deg); }
+                    .pbi-pn::after { content: ''; position: absolute; left: 28px; top: 50%; width: 36px; height: 36px; margin-top: -18px; border-radius: 50%; border: 4px solid transparent; border-left-color: #A1A1AA; transform: rotate(35deg); }
+                    .pbi-pn b { display: block; font-size: 8.5px; font-weight: 700; letter-spacing: .22em; margin-bottom: 4px; color: #E4E4E7; font-family: 'Segoe UI', sans-serif; }
+                    .pbi-pn p { font-size: 11px; line-height: 1.45; font-weight: 300; color: #A1A1AA; font-family: 'Segoe UI', sans-serif; margin: 0; }
+                    .pbi-pn.pht::before { border-left-color: #A1A1AA; border-bottom-color: #A1A1AA; }
+                    .pbi-pn.pht::after { border-left-color: #D4D4D8; }
+                    .pbi-pn.pht b { color: #FAFAFA; }
+                    .pbi-sw:hover ~ .pbi-pn.psw { opacity: 1; transform: translateY(0); }
+                    .pbi-ht:hover ~ .pbi-pn.pht { opacity: 1; transform: translateY(0); }
+                    .pbi-ph { position: absolute; border: 1px dashed rgba(24,24,27,.18); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: .18em; color: rgba(24,24,27,.35); background: rgba(24,24,27,.02); }
+                </style>
+                <div class="pbi-preview-wrap">
+                    <div id="bg" style="position:relative;width:1496px;height:1250px;overflow:hidden;font-family:'Segoe UI Variable Display','Segoe UI Semilight','Segoe UI',sans-serif;color:#E4E4E7;background:radial-gradient(920px 640px at 86% 1%,rgba(255,255,255,.03),transparent 62%),radial-gradient(760px 520px at 6% 9%,rgba(255,255,255,.02),transparent 58%),linear-gradient(180deg,#09090B,#18181B 14%,#27272A 46%,#18181B 82%,#09090B);">
+                        <div id="pbi-grid" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;"></div>
+                        <div class="pbi-orb" style="position:absolute;border-radius:50%;pointer-events:none;top:820px;left:-260px;width:760px;height:760px;background:radial-gradient(circle,rgba(255,255,255,.02),transparent 65%);"></div>
+                        <div class="pbi-orb" style="position:absolute;border-radius:50%;pointer-events:none;top:3260px;right:-300px;width:820px;height:820px;background:radial-gradient(circle,rgba(255,255,255,.015),transparent 65%);"></div>
+                        <!-- Header -->
+                        <div style="position:absolute;left:0;top:0;width:100%;height:180px;background:linear-gradient(180deg,rgba(9,9,11,.88),rgba(9,9,11,.30) 70%,transparent);border-bottom:1px solid rgba(255,255,255,.08);"></div>
+                        <div style="position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,#52525B,#D4D4D8 38%,rgba(212,212,216,0) 78%);"></div>
+                        <div style="position:absolute;left:40px;top:18px;font-size:12px;font-weight:700;letter-spacing:.30em;color:#FFFFFF;">HR · ANALYTICS<span style="margin-left:14px;font-size:8px;font-weight:400;letter-spacing:.34em;color:rgba(161,161,170,.75);"></span></div>
+                        <h2 style="position:absolute;left:40px;top:44px;font-size:27px;font-weight:200;letter-spacing:.16em;color:#FAFAFA;white-space:nowrap;margin:0;">WORKFORCE <em style="font-style:normal;font-weight:500;background:linear-gradient(90deg,#A1A1AA,#FFFFFF);-webkit-background-clip:text;background-clip:text;color:transparent;">ATTRITION</em></h2>
+                        <p style="position:absolute;left:40px;top:88px;font-size:8.5px;font-weight:300;letter-spacing:.20em;color:rgba(212,212,216,.85);margin:0;">01 · OVERVIEW &amp; WIDGETS</p>
+                        <!-- KPI Slots -->
+                        <div style="position:absolute;left:16px;top:115px;width:280px;height:80px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);">Headcount Total</div>
+                        <div style="position:absolute;left:312px;top:115px;width:280px;height:80px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);">Taxa de Turnover (%)</div>
+                        <div style="position:absolute;left:608px;top:115px;width:280px;height:80px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);">Exits</div>
+                        <div style="position:absolute;left:904px;top:115px;width:280px;height:80px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);">Avg Age of Employees</div>
+                        <div style="position:absolute;left:1200px;top:115px;width:280px;height:80px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);">Avg Salary</div>
+                        <!-- Section 02 -->
+                        <div style="position:absolute;left:16px;top:240px;width:1472px;display:flex;align-items:center;gap:16px;z-index:1;"><i style="font-style:normal;font-size:30px;font-weight:100;color:rgba(161,161,170,.55);letter-spacing:.04em;">02</i><b style="font-size:11.5px;font-weight:600;letter-spacing:.30em;color:#E4E4E7;">RISK DISTRIBUTION</b><small style="font-size:9px;font-weight:300;letter-spacing:.10em;color:rgba(161,161,170,.78);">AGE · EDUCATION · JOB ROLE</small></div>
+                        <div style="position:absolute;left:16px;top:300px;width:1472px;display:flex;align-items:center;gap:16px;">
+                            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.15));"></div>
+                            <span style="font-size:11px;font-weight:300;letter-spacing:.24em;color:rgba(212,212,216,.82);text-transform:uppercase;white-space:nowrap;">Onde está concentrado o risco de perda?</span>
+                            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,0));"></div>
+                        </div>
+                        <!-- Cards Row 1 -->
+                        <!-- Card: Age Risk Curve -->
+                        <div class="pbi-card" style="left:16px;top:350px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Age Risk Curve</span>
+                                <span class="pbi-tg">AGE</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>18–25 anos concentra o maior risco. Esse grupo responde fortemente a ofertas externas, retenção exige plano de carreira claro, não apenas salário.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Cada barra = uma faixa etária; altura = taxa de atrito (%). Barras mais altas à esquerda indicam onde agir primeiro.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Bar Chart Placeholder</div>
+                        </div>
+                        <!-- Card: Education Field -->
+                        <div class="pbi-card" style="left:509px;top:350px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Education Field</span>
+                                <span class="pbi-tg sq">EDUCATION</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>Marketing e Technical Degree lideram as saídas, formações valorizadas pelo mercado saem quando não enxergam crescimento interno.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Cada coluna = uma área de formação; altura = total de saídas. Cruze com a taxa (%) para não confundir volume com risco real.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Column Chart Placeholder</div>
+                        </div>
+                        <!-- Card: Role Concentration -->
+                        <div class="pbi-card" style="left:1002px;top:350px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Role Concentration</span>
+                                <span class="pbi-tg">ROLE</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>Sales Rep e Lab Technician lideram as saídas, funções de linha de frente com alto custo de reposição e impacto direto em receita.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Comprimento da barra = volume de saídas. Cargos com barra longa e headcount baixo são os mais críticos, foque os 3 primeiros.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Horizontal Bar Placeholder</div>
+                        </div>
+                        <!-- Section 03 -->
+                        <div style="position:absolute;left:16px;top:720px;width:1472px;display:flex;align-items:center;gap:16px;"><i style="font-style:normal;font-size:30px;font-weight:100;color:rgba(161,161,170,.55);letter-spacing:.04em;">03</i><b style="font-size:11.5px;font-weight:600;letter-spacing:.30em;color:#E4E4E7;">RETENTION SIGNALS</b><small style="font-size:9px;font-weight:300;letter-spacing:.10em;color:rgba(161,161,170,.78);">PAY · TENURE · SATISFACTION</small></div>
+                        <div style="position:absolute;left:16px;top:780px;width:1472px;display:flex;align-items:center;gap:16px;">
+                            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.15));"></div>
+                            <span style="font-size:11px;font-weight:300;letter-spacing:.24em;color:rgba(212,212,216,.82);text-transform:uppercase;white-space:nowrap;">Quais alavancas retêm talentos?</span>
+                            <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,0));"></div>
+                        </div>
+                        <!-- Cards Row 2 -->
+                        <!-- Card: Salary Pressure -->
+                        <div class="pbi-card" style="left:16px;top:830px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Salary Pressure</span>
+                                <span class="pbi-tg">PAY</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>"Upto 5k" concentra +60% das saídas. Acima de 10k, o atrito cai 4×. Sub-remuneração nos níveis de entrada é o gap mais urgente.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Eixo X = salário; eixo Y = risco de saída. Densidade alta no canto inferior esquerdo revela o grupo mais crítico.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Scatter Plot Placeholder</div>
+                        </div>
+                        <!-- Card: Tenure Fragility -->
+                        <div class="pbi-card" style="left:509px;top:830px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Tenure Fragility</span>
+                                <span class="pbi-tg sq">TENURE</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>Dois picos críticos: 0–1 ano (falha de onboarding) e ~5 anos (estagnação). São os momentos mais caros e mais preveníveis.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Linha = taxa de atrito por anos de casa. Use os marcos de 1, 3 e 5 anos como gatilhos para check-ins de retenção.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Line Chart Placeholder</div>
+                        </div>
+                        <!-- Card: Role vs Satisfaction -->
+                        <div class="pbi-card" style="left:1002px;top:830px;width:477px;height:320px;">
+                            <div class="pbi-st">
+                                <span class="pbi-ti">Role vs Satisfaction</span>
+                                <span class="pbi-tg">SATISFACTION</span>
+                            </div>
+                            <span class="pbi-ch pbi-sw">SO WHAT</span>
+                            <span class="pbi-ch pbi-ht">HOW TO READ</span>
+                            <div class="pbi-pn psw"><b>SO WHAT — POR QUE IMPORTA</b><p>Satisfação baixa eleva o risco de saída em 3× mesmo com salário competitivo. Sales Rep e HR são os pontos estruturais mais críticos.</p></div>
+                            <div class="pbi-pn pht"><b>HOW TO READ — COMO INTERPRETAR</b><p>Linhas = cargos; colunas = satisfação 1–4. Células escuras nas colunas 1–2 com alto atrito = prioridade de ação imediata.</p></div>
+                            <div class="pbi-ph" style="left:16px;top:56px;width:445px;height:248px;">Heatmap Placeholder</div>
+                        </div>
+                        <!-- Footer -->
+                        <div style="position:absolute;left:16px;bottom:16px;width:1472px;display:flex;justify-content:space-between;font-size:8.5px;font-weight:300;letter-spacing:.16em;color:rgba(161,161,170,.72);">
+                            <span>HR ANALYTICS — WORKFORCE ATTRITION OVERVIEW</span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
             <p class="sec-label">Contexto de negócio</p>
             <p class="body-copy">
                 A rotatividade de funcionários representa um dos desafios mais custosos para qualquer organização. Além
@@ -1612,15 +1798,17 @@
                     </div>
                 </li>
 
-                <li class="rm-item active">
-                    <div class="rm-dot active">
-                        <span class="rm-blink"></span>
+                <li class="rm-item done">
+                    <div class="rm-dot done">
+                        <svg class="rm-check" viewBox="0 0 10 10">
+                            <polyline points="2,5 4.5,7.5 9,2.5" />
+                        </svg>
                     </div>
                     <div class="rm-body">
                         <div class="rm-header">
                             <span class="rm-phase">Fase 3</span>
                             <span class="rm-title">Análise Exploratória (EDA)</span>
-                            <span class="rm-tag active">Em progresso</span>
+                            <span class="rm-tag done">Concluída</span>
                         </div>
                         <div class="rm-tasks">
                             <span class="rm-task">Análise estatística descritiva em notebooks/01_eda.ipynb</span>
@@ -1629,13 +1817,15 @@
                     </div>
                 </li>
 
-                <li class="rm-item pending">
-                    <div class="rm-dot pending"></div>
+                <li class="rm-item active">
+                    <div class="rm-dot active">
+                        <span class="rm-blink"></span>
+                    </div>
                     <div class="rm-body">
                         <div class="rm-header">
                             <span class="rm-phase">Fase 4</span>
                             <span class="rm-title">Pipeline de engenharia</span>
-                            <span class="rm-tag pending">Pendente</span>
+                            <span class="rm-tag active">Em progresso</span>
                         </div>
                         <div class="rm-tasks">
                             <span class="rm-task">Scripts Python para limpeza e tratamento (Bronze → Silver →
