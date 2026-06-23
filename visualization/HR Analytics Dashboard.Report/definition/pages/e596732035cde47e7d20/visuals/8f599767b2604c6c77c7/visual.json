@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8f599767b2604c6c77c7",
+  "position": {
+    "x": 37.037037037037038,
+    "y": 883.95061728395058,
+    "z": 10001,
+    "height": 265.4320987654321,
+    "width": 445.679012345679,
+    "tabOrder": 10001
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HR_Analytics"
+                    }
+                  },
+                  "Property": "Salary Pressure HTML"
+                }
+              },
+              "queryRef": "HR_Analytics.Salary Pressure HTML",
+              "nativeQueryRef": "Salary Pressure HTML"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

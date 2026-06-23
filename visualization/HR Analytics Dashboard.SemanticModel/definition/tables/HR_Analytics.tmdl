@@ -1,0 +1,533 @@
+table HR_Analytics
+	lineageTag: 73f0b8da-9e59-408c-b3b6-a9665d3c59a1
+
+	measure AttritionRate = sum(HR_Analytics[AttritionCount])/sum(HR_Analytics[EmployeeCount])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ebdc9f64-c8b3-4aae-9e04-08c2d9b6bf86
+
+	measure ExecutiveSoWhat = "Attrition is a portfolio risk, not one number. Prioritize groups where high exit counts overlap with role criticality, early tenure, lower salary bands, or weaker satisfaction signals."
+		lineageTag: 6db98925-7e14-4d58-a3c1-26ad6e5af001
+
+	measure HowToReadFirstPage = "Start with the KPI strip, then read left to right: demographic pressure, role concentration, pay and tenure signals. Use Department to reframe every answer."
+		lineageTag: 7efc42a1-9f03-4cb8-b0d3-f947aa550102
+
+	measure FluidBackgroundHTML = "<div style='font-family:Segoe UI;padding:18px;border-radius:18px;background:radial-gradient(circle at 20% 0%,#1b5d6b 0,#081018 35%,#111820 100%);color:#f5f7fa'><strong>HR Attrition Intelligence</strong><br/><span style='color:#afc0c8'>Decision-first overview with so what, how to read, and question-led visuals.</span></div>"
+		lineageTag: 11e820b6-d2dc-4322-a815-64c481ce002
+
+	measure HomeBackgroundHTML = "<!DOCTYPE html> <html lang=""pt-BR""> <head> <meta charset=""UTF-8""> <title>Preview · Background Workforce Attrition [HTML]</title> <style> html,body{margin:0;background:#09090B} *{margin:0;padding:0;box-sizing:border-box} #bg{position:relative;width:1496px;height:1250px;overflow:hidden;font-family:'Segoe UI Variable Display','Segoe UI Semilight','Segoe UI',sans-serif;color:#E4E4E7;background:radial-gradient(920px 640px at 86% 1%,rgba(255,255,255,.03),transparent 62%),radial-gradient(760px 520px at 6% 9%,rgba(255,255,255,.02),transparent 58%),linear-gradient(180deg,#09090B,#18181B 14%,#27272A 46%,#18181B 82%,#09090B)} #grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none} .orb{position:absolute;border-radius:50%;pointer-events:none} .o1{top:820px;left:-260px;width:760px;height:760px;background:radial-gradient(circle,rgba(255,255,255,.02),transparent 65%)} .o2{top:3260px;right:-300px;width:820px;height:820px;background:radial-gradient(circle,rgba(255,255,255,.015),transparent 65%)} .hd{position:absolute;left:0;top:0;width:100%;height:180px;background:linear-gradient(180deg,rgba(9,9,11,.88),rgba(9,9,11,.30) 70%,transparent);border-bottom:1px solid rgba(255,255,255,.08)} .hd:before{content:'';position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,#52525B,#D4D4D8 38%,rgba(212,212,216,0) 78%)} .lg{position:absolute;left:40px;top:18px;font-size:12px;font-weight:700;letter-spacing:.30em;color:#FFFFFF} .lg span{margin-left:14px;font-size:8px;font-weight:400;letter-spacing:.34em;color:rgba(161,161,170,.75)} h1{position:absolute;left:40px;top:44px;font-size:27px;font-weight:200;letter-spacing:.16em;color:#FAFAFA;white-space:nowrap} h1 em{font-style:normal;font-weight:500;background:linear-gradient(90deg,#A1A1AA,#FFFFFF);-webkit-background-clip:text;background-clip:text;color:transparent} .tag{position:absolute;left:40px;top:88px;font-size:8.5px;font-weight:300;letter-spacing:.20em;color:rgba(212,212,216,.85)} .tag b{color:#D4D4D8;font-weight:600} .s01{position:absolute;left:240px;top:146px;font-size:8.5px;font-weight:600;letter-spacing:.26em;color:rgba(161,161,170,.88)} .slot{position:absolute;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)} .cd{position:absolute;border-radius:14px;background:linear-gradient(180deg,#FFFFFF,#F4F4F5);box-shadow:0 1px 2px rgba(0,0,0,.15),0 24px 60px -18px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.07)} .cd.C1{left:16px;width:477px} .cd.C2{left:509px;width:477px} .cd.C3{left:1002px;width:477px} .st{position:absolute;left:0;top:0;width:100%;height:44px;display:flex;align-items:center;gap:10px;padding:0 18px} .st:after{content:'';position:absolute;left:18px;right:18px;bottom:0;height:1px;background:linear-gradient(90deg,#E4E4E7,rgba(228,228,231,0))} .ti{font-size:15px;font-weight:300;color:#18181B;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px} .tg{font-size:8px;font-weight:700;letter-spacing:.14em;color:#3F3F46;background:rgba(63,63,70,.08);border:1px solid rgba(63,63,70,.25);padding:3px 9px;border-radius:99px} .tg.sq{color:#52525B;background:rgba(82,82,91,.08);border-color:rgba(82,82,91,.30)} .ch{position:absolute;top:11px;height:22px;display:inline-flex;align-items:center;padding:0 11px;border-radius:99px;font-size:8px;font-weight:700;letter-spacing:.13em;transition:all .25s ease;cursor:default} .ch.sw{right:118px;color:#52525B;border:1px solid rgba(82,82,91,.38);background:rgba(82,82,91,.05)} .ch.sw:hover{background:#3F3F46;color:#FFFFFF;box-shadow:0 0 20px rgba(63,63,70,.3)} .ch.ht{right:14px;color:#71717A;border:1px solid rgba(113,113,122,.32);background:rgba(113,113,122,.05)} .ch.ht:hover{background:#18181B;color:#FFFFFF;border-color:#18181B;box-shadow:0 0 16px rgba(24,24,27,.35)} .pn{position:absolute;left:0;width:100%;bottom:-86px;height:80px;padding:10px 20px 10px 78px;overflow:hidden;border-radius:12px;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease;pointer-events:none;background:linear-gradient(135deg,rgba(24,24,27,.96),rgba(39,39,42,.94));box-shadow:0 10px 34px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.12);z-index:6} .pn:before{content:'';position:absolute;left:12px;top:50%;width:60px;height:60px;margin-top:-30px;border-radius:50%;border:9px solid transparent;border-left-color:#71717A;border-bottom-color:#71717A;transform:rotate(45deg)} .pn:after{content:'';position:absolute;left:28px;top:50%;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:4px solid transparent;border-left-color:#A1A1AA;transform:rotate(35deg)} .pn b{display:block;font-size:8.5px;font-weight:700;letter-spacing:.22em;margin-bottom:4px;color:#E4E4E7} .pn.pht:before{border-left-color:#A1A1AA;border-bottom-color:#A1A1AA} .pn.pht:after{border-left-color:#D4D4D8} .pn.pht b{color:#FAFAFA} .pn p{font-size:11px;line-height:1.45;font-weight:300;color:#A1A1AA} .ch.sw:hover ~ .pn.psw{opacity:1;transform:translateY(0)} .ch.ht:hover ~ .pn.pht{opacity:1;transform:translateY(0)} .qz{position:absolute;left:16px;width:1472px;height:40px;display:flex;align-items:center;gap:16px;z-index:1} .qz:before{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.15))} .qz:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,0))} .qz span{font-size:11px;font-weight:300;letter-spacing:.24em;color:rgba(212,212,216,.82);text-transform:uppercase;white-space:nowrap} .sc{position:absolute;left:16px;width:1472px;display:flex;align-items:center;gap:16px} .sc i{font-style:normal;font-size:30px;font-weight:100;color:rgba(161,161,170,.55);letter-spacing:.04em} .sc b{font-size:11.5px;font-weight:600;letter-spacing:.30em;color:#E4E4E7} .sc small{font-size:9px;font-weight:300;letter-spacing:.10em;color:rgba(161,161,170,.78)} .sc:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(113,113,122,.45),rgba(113,113,122,0))} .ft{position:absolute;left:16px;bottom:16px;width:1472px;display:flex;justify-content:space-between;font-size:8.5px;font-weight:300;letter-spacing:.16em;color:rgba(161,161,170,.72)} /* Placeholders e Mocks */ .ph{position:absolute;border:1px dashed rgba(161,161,170,.30);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.18em;color:rgba(161,161,170,.45);background:rgba(255,255,255,.02)} .cd .ph{position:absolute;border-color:rgba(24,24,27,.18);color:rgba(24,24,27,.35);background:rgba(24,24,27,.02)} </style> </head> <body> <div id=""bg""> <div id=""grid""></div><div class=""orb o1""></div><div class=""orb o2""></div> <div class=""hd""></div> <div class=""lg"">HR · ANALYTICS<span></div> <h1>WORKFORCE <em>ATTRITION</em></h1> <p class=""tag"">01 · OVERVIEW & WIDGETS</p> <div class=""slot"" style=""left:16px;top:115px;width:280px;height:80px""> <div class=""ph"" style=""left:0;top:0;width:100%;height:100%;border:none;background:transparent"">Headcount Total</div> </div> <div class=""slot"" style=""left:312px;top:115px;width:280px;height:80px""> <div class=""ph"" style=""left:0;top:0;width:100%;height:100%;border:none;background:transparent"">Taxa de Turnover (%)</div> </div> <div class=""slot"" style=""left:608px;top:115px;width:280px;height:80px""> <div class=""ph"" style=""left:0;top:0;width:100%;height:100%;border:none;background:transparent"">Exits</div> </div> <div class=""slot"" style=""left:904px;top:115px;width:280px;height:80px""> <div class=""ph"" style=""left:0;top:0;width:100%;height:100%;border:none;background:transparent"">Avg Age of Employees</div> </div> <div class=""slot"" style=""left:1200px;top:115px;width:280px;height:80px""> <div class=""ph"" style=""left:0;top:0;width:100%;height:100%;border:none;background:transparent"">Avg Salary</div> </div> <div class=""sc"" style=""top:240px""><i>02</i><b>RISK DISTRIBUTION</b><small>AGE · EDUCATION · JOB ROLE</small></div> <div class=""qz"" style=""top:300px""><span>Onde está concentrado o risco de perda?</span></div> <div class=""cd C1"" style=""top:350px;height:320px""> <div class=""st""><span class=""ti"">Age Risk Curve</span><span class=""tg"">AGE</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>18–25 anos concentra o maior risco. Esse grupo responde fortemente a ofertas externas, retenção exige plano de carreira claro, não apenas salário.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Cada barra = uma faixa etária; altura = taxa de atrito (%). Barras mais altas à esquerda indicam onde agir primeiro.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Bar Chart Placeholder</div> </div> <div class=""cd C2"" style=""top:350px;height:320px""> <div class=""st""><span class=""ti"">Education Field</span><span class=""tg sq"">EDUCATION</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>Marketing e Technical Degree lideram as saídas, formações valorizadas pelo mercado saem quando não enxergam crescimento interno.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Cada coluna = uma área de formação; altura = total de saídas. Cruze com a taxa (%) para não confundir volume com risco real.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Column Chart Placeholder</div> </div> <div class=""cd C3"" style=""top:350px;height:320px""> <div class=""st""><span class=""ti"">Role Concentration</span><span class=""tg"">ROLE</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>Sales Rep e Lab Technician lideram as saídas, funções de linha de frente com alto custo de reposição e impacto direto em receita.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Comprimento da barra = volume de saídas. Cargos com barra longa e headcount baixo são os mais críticos, foque os 3 primeiros.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Horizontal Bar Placeholder</div> </div> <div class=""sc"" style=""top:720px""><i>03</i><b>RETENTION SIGNALS</b><small>PAY · TENURE · SATISFACTION</small></div> <div class=""qz"" style=""top:780px""><span>Quais alavancas retêm talentos?</span></div> <div class=""cd C1"" style=""top:830px;height:320px""> <div class=""st""><span class=""ti"">Salary Pressure</span><span class=""tg"">PAY</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>""Upto 5k"" concentra +60% das saídas. Acima de 10k, o atrito cai 4×. Sub-remuneração nos níveis de entrada é o gap mais urgente.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Eixo X = salário; eixo Y = risco de saída. Densidade alta no canto inferior esquerdo revela o grupo mais crítico.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Scatter Plot Placeholder</div> </div> <div class=""cd C2"" style=""top:830px;height:320px""> <div class=""st""><span class=""ti"">Tenure Fragility</span><span class=""tg sq"">TENURE</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>Dois picos críticos: 0–1 ano (falha de onboarding) e ~5 anos (estagnação). São os momentos mais caros  e mais preveníveis.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Linha = taxa de atrito por anos de casa. Use os marcos de 1, 3 e 5 anos como gatilhos para check-ins de retenção.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Line Chart Placeholder</div> </div> <div class=""cd C3"" style=""top:830px;height:320px""> <div class=""st""><span class=""ti"">Role vs Satisfaction</span><span class=""tg"">SATISFACTION</span></div> <span class=""ch sw"">SO WHAT</span><span class=""ch ht"">HOW TO READ</span> <div class=""pn psw""><b>SO WHAT — POR QUE IMPORTA</b><p>Satisfação baixa eleva o risco de saída em 3×  mesmo com salário competitivo. Sales Rep e HR são os pontos estruturais mais críticos.</p></div> <div class=""pn pht""><b>HOW TO READ — COMO INTERPRETAR</b><p>Linhas = cargos; colunas = satisfação 1–4. Células escuras nas colunas 1–2 com alto atrito = prioridade de ação imediata.</p></div> <div class=""ph"" style=""left:16px;top:56px;width:445px;height:248px"">Heatmap Placeholder</div> </div> <div class=""ft""><span>HR ANALYTICS — WORKFORCE ATTRITION OVERVIEW</span><span></span></div> </div> <script> if (location.hash === '#demo') { var f = function (sel) { var p = document.querySelector(sel); if (p) { p.style.opacity = 1; p.style.transform = 'none'; } }; f('.cd.C1 .pn.psw'); f('.cd.C3 .pn.pht'); } </script> </body> </html>"
+		lineageTag: c9d7ee0c-8822-48df-bdf8-10a18793c52a
+
+	measure TooltipGenderSoWhat = "SO WHAT: Gender split is a fairness and monitoring lens. Treat it as a prompt for deeper cuts by role, pay and department, not as a conclusion by itself."
+		lineageTag: ea4adfb1-d357-42f6-921f-ee1cee8f6ac2
+
+	measure TooltipGenderHowToRead = "HOW TO READ: Compare the relative share of attrition by gender after applying the Department filter. Look for imbalance that persists inside the same role mix."
+		lineageTag: c6ba0e07-2d6a-4440-8c5b-11fb20e1bf7b
+
+	measure TooltipAgeSoWhat = "SO WHAT: Age concentration tells whether retention should be designed by career stage instead of only by department."
+		lineageTag: 273135a6-5af6-4453-bda8-f3037547b6f9
+
+	measure TooltipAgeHowToRead = "HOW TO READ: Taller bars mean more exits in that age band. Use Department to test whether the pattern is local or company-wide."
+		lineageTag: 9cb62f50-b4ee-4125-a548-4c5e86ce0209
+
+	measure TooltipEducationSoWhat = "SO WHAT: Education field can reveal talent pools where hiring expectations and role reality may be misaligned."
+		lineageTag: 71d2dabc-cede-4d69-9412-3844e0afc3da
+
+	measure TooltipEducationHowToRead = "HOW TO READ: Larger slices show where attrition volume is concentrated. Pair this with role and salary before acting."
+		lineageTag: 1eb35530-2644-4163-aa16-434f5a39fe87
+
+	measure TooltipRoleSoWhat = "SO WHAT: Role concentration is the most actionable attrition view because it points to owners, managers and operating routines."
+		lineageTag: d52074ec-12bd-4798-959c-a5059d4442b7
+
+	measure TooltipRoleHowToRead = "HOW TO READ: Bars are sorted by exit volume. Start with the largest role, then filter by Department to find accountable hotspots."
+		lineageTag: 3d09d2a0-271e-4c64-97e5-bca985c22183
+
+	measure TooltipSalarySoWhat = "SO WHAT: Pay band pressure helps separate compensation risk from experience, manager or role-design risk."
+		lineageTag: cf0b859d-964d-4dcf-88e4-662162b5aa12
+
+	measure TooltipSalaryHowToRead = "HOW TO READ: Read from highest exit band downward. If low bands dominate, compare with tenure and job role before changing compensation policy."
+		lineageTag: a87ff263-cac5-47cf-9f76-9dbea2fdb42a
+
+	measure TooltipTenureSoWhat = "SO WHAT: Early-tenure spikes usually point to onboarding, expectation mismatch or manager fit rather than long-term engagement alone."
+		lineageTag: 9df33bc7-5723-4525-b31e-a14c0aaf936b
+
+	measure TooltipTenureHowToRead = "HOW TO READ: Peaks show when employees are most likely to leave. Filter by Department to see whether the fragile window changes."
+		lineageTag: 725cdf7c-786d-4c51-890d-e839924d86d1
+
+	measure TooltipMatrixSoWhat = "SO WHAT: The matrix connects role pressure with satisfaction, helping separate high-volume churn from low-sentiment risk."
+		lineageTag: c6d245f3-16d6-43a2-9daa-3acf8c84ffbb
+
+	measure TooltipMatrixHowToRead = "HOW TO READ: Scan roles across satisfaction levels. Cells with higher attrition deserve a manager-level conversation and qualitative follow-up."
+		lineageTag: 1a36abf2-7de7-4430-88c1-e9db3254dc53
+
+	measure FirstPageGradientTitleHTML = "<div style='font-family:Segoe UI;font-size:42px;font-weight:800;background:linear-gradient(90deg,#7CE0C3,#5FA7FF,#FFB86B);-webkit-background-clip:text;color:transparent'>WORKFORCE ATTRITION</div>"
+		lineageTag: f2d6e0c2-eeb3-44bd-9edc-7b521d1b42da
+
+	measure Employees =
+			
+			COUNT(HR_Analytics[EmpID])
+		formatString: 0
+		lineageTag: 88c26410-1829-4947-bb46-aa27e8d8b550
+
+	measure 'Salary Pressure HTML' =
+			
+			VAR MaleTotal   = CALCULATE([Employees], HR_Analytics[Gender] = "Male")
+			VAR FemaleTotal = CALCULATE([Employees], HR_Analytics[Gender] = "Female")
+			
+			VAR MU5   = CALCULATE([Employees], HR_Analytics[Gender] = "Male",   HR_Analytics[SalarySlab] = "Upto 5k")
+			VAR M510  = CALCULATE([Employees], HR_Analytics[Gender] = "Male",   HR_Analytics[SalarySlab] = "5k-10k")
+			VAR M1015 = CALCULATE([Employees], HR_Analytics[Gender] = "Male",   HR_Analytics[SalarySlab] = "10k-15k")
+			VAR M15   = CALCULATE([Employees], HR_Analytics[Gender] = "Male",   HR_Analytics[SalarySlab] = "15k+")
+			
+			VAR FU5   = CALCULATE([Employees], HR_Analytics[Gender] = "Female", HR_Analytics[SalarySlab] = "Upto 5k")
+			VAR F510  = CALCULATE([Employees], HR_Analytics[Gender] = "Female", HR_Analytics[SalarySlab] = "5k-10k")
+			VAR F1015 = CALCULATE([Employees], HR_Analytics[Gender] = "Female", HR_Analytics[SalarySlab] = "10k-15k")
+			VAR F15   = CALCULATE([Employees], HR_Analytics[Gender] = "Female", HR_Analytics[SalarySlab] = "15k+")
+			
+			VAR MaxVal = MAXX(
+			    { MU5, M510, M1015, M15, FU5, F510, F1015, F15 },
+			    [Value]
+			)
+			VAR ChartH  = 120
+			VAR BarW    = 28
+			VAR Scale   = DIVIDE(ChartH, MaxVal)
+			
+			VAR BaseY   = 215
+			
+			-- Posições X dos grupos (Male: 40,86,132,178 | Female: 302,348,394,440)
+			VAR MX1 = 40   VAR MX2 = 86   VAR MX3 = 132  VAR MX4 = 178
+			VAR FX1 = 302  VAR FX2 = 348  VAR FX3 = 394  VAR FX4 = 440
+			
+			-- Alturas das barras
+			VAR MH1 = MU5   * Scale  VAR MH2 = M510  * Scale
+			VAR MH3 = M1015 * Scale  VAR MH4 = M15   * Scale
+			VAR FH1 = FU5   * Scale  VAR FH2 = F510  * Scale
+			VAR FH3 = F1015 * Scale  VAR FH4 = F15   * Scale
+			
+			-- Cor das barras (duas tonalidades para Male / Female)
+			VAR CM = "#8a8a8a"
+			VAR CF = "#c5c5c5"
+			
+			-- Labels de categoria eixo X
+			VAR LY = 238   -- y dos labels de categoria
+			
+			RETURN
+			
+			"
+			<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 270'>
+			
+			  <!-- fundo -->
+			  <rect width='520' height='270' rx='10' fill='white' stroke='#e5e5e5' stroke-width='0.5'/>
+			
+			  <!-- legenda topo -->
+			  <rect x='20'  y='16' width='10' height='10' rx='2' fill='" & CM & "'/>
+			  <text x='34'  y='25' font-family='Segoe UI' font-size='11' fill='#555'>Male · " & MaleTotal & "</text>
+			  <rect x='278' y='16' width='10' height='10' rx='2' fill='" & CF & "'/>
+			  <text x='292' y='25' font-family='Segoe UI' font-size='11' fill='#555'>Female · " & FemaleTotal & "</text>
+			
+			  <!-- divisor central -->
+			  <line x1='260' y1='10' x2='260' y2='252' stroke='#e0e0e0' stroke-width='0.5'/>
+			
+			  <!-- rótulos de seção -->
+			  <text x='20'  y='47' font-family='Segoe UI' font-size='9' font-weight='600' letter-spacing='1' fill='#999'>MALE</text>
+			  <text x='280' y='47' font-family='Segoe UI' font-size='9' font-weight='600' letter-spacing='1' fill='#999'>FEMALE</text>
+			
+			  <!-- linhas de grade (4 níveis) -->
+			  <line x1='20' y1='" & (BaseY - ChartH) & "' x2='245' y2='" & (BaseY - ChartH) & "' stroke='#f0f0f0'/>
+			  <line x1='20' y1='" & (BaseY - ChartH*0.66) & "' x2='245' y2='" & (BaseY - ChartH*0.66) & "' stroke='#f0f0f0'/>
+			  <line x1='20' y1='" & (BaseY - ChartH*0.33) & "' x2='245' y2='" & (BaseY - ChartH*0.33) & "' stroke='#f0f0f0'/>
+			  <line x1='280' y1='" & (BaseY - ChartH) & "' x2='505' y2='" & (BaseY - ChartH) & "' stroke='#f0f0f0'/>
+			  <line x1='280' y1='" & (BaseY - ChartH*0.66) & "' x2='505' y2='" & (BaseY - ChartH*0.66) & "' stroke='#f0f0f0'/>
+			  <line x1='280' y1='" & (BaseY - ChartH*0.33) & "' x2='505' y2='" & (BaseY - ChartH*0.33) & "' stroke='#f0f0f0'/>
+			
+			  <!-- linha de base -->
+			  <line x1='20' y1='" & BaseY & "' x2='245' y2='" & BaseY & "' stroke='#d0d0d0'/>
+			  <line x1='280' y1='" & BaseY & "' x2='505' y2='" & BaseY & "' stroke='#d0d0d0'/>
+			
+			  <!-- === BARRAS MALE === -->
+			  <rect x='" & MX1 & "' y='" & (BaseY - MH1) & "' width='" & BarW & "' height='" & MH1 & "' rx='2' fill='" & CM & "'/>
+			  <rect x='" & MX2 & "' y='" & (BaseY - MH2) & "' width='" & BarW & "' height='" & MH2 & "' rx='2' fill='" & CM & "'/>
+			  <rect x='" & MX3 & "' y='" & (BaseY - MH3) & "' width='" & BarW & "' height='" & MH3 & "' rx='2' fill='" & CM & "'/>
+			  <rect x='" & MX4 & "' y='" & (BaseY - MH4) & "' width='" & BarW & "' height='" & MH4 & "' rx='2' fill='" & CM & "'/>
+			
+			  <!-- valores sobre barras Male -->
+			  <text x='" & (MX1 + 14) & "' y='" & (BaseY - MH1 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & MU5   & "</text>
+			  <text x='" & (MX2 + 14) & "' y='" & (BaseY - MH2 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & M510  & "</text>
+			  <text x='" & (MX3 + 14) & "' y='" & (BaseY - MH3 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & M1015 & "</text>
+			  <text x='" & (MX4 + 14) & "' y='" & (BaseY - MH4 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & M15   & "</text>
+			
+			  <!-- === BARRAS FEMALE === -->
+			  <rect x='" & FX1 & "' y='" & (BaseY - FH1) & "' width='" & BarW & "' height='" & FH1 & "' rx='2' fill='" & CF & "'/>
+			  <rect x='" & FX2 & "' y='" & (BaseY - FH2) & "' width='" & BarW & "' height='" & FH2 & "' rx='2' fill='" & CF & "'/>
+			  <rect x='" & FX3 & "' y='" & (BaseY - FH3) & "' width='" & BarW & "' height='" & FH3 & "' rx='2' fill='" & CF & "'/>
+			  <rect x='" & FX4 & "' y='" & (BaseY - FH4) & "' width='" & BarW & "' height='" & FH4 & "' rx='2' fill='" & CF & "'/>
+			
+			  <!-- valores sobre barras Female -->
+			  <text x='" & (FX1 + 14) & "' y='" & (BaseY - FH1 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & FU5   & "</text>
+			  <text x='" & (FX2 + 14) & "' y='" & (BaseY - FH2 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & F510  & "</text>
+			  <text x='" & (FX3 + 14) & "' y='" & (BaseY - FH3 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & F1015 & "</text>
+			  <text x='" & (FX4 + 14) & "' y='" & (BaseY - FH4 - 4) & "' font-family='Segoe UI' font-size='10' text-anchor='middle' fill='#555'>" & F15   & "</text>
+			
+			  <!-- === LABELS EIXO X === -->
+			  <text x='" & (MX1 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>upto 5k</text>
+			  <text x='" & (MX2 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>5k–10k</text>
+			  <text x='" & (MX3 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>10k–15k</text>
+			  <text x='" & (MX4 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>15k+</text>
+			
+			  <text x='" & (FX1 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>upto 5k</text>
+			  <text x='" & (FX2 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>5k–10k</text>
+			  <text x='" & (FX3 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>10k–15k</text>
+			  <text x='" & (FX4 + 14) & "' y='" & LY & "' font-family='Segoe UI' font-size='9' text-anchor='middle' fill='#aaa'>15k+</text>
+			
+			</svg>"
+		lineageTag: d9c1a2da-5f97-4764-b329-46d0d4df1a1e
+
+	column EmpID
+		dataType: string
+		lineageTag: 671334a1-1e06-4a77-abfe-afb6e73c2d7a
+		summarizeBy: none
+		sourceColumn: EmpID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d60cb1e-a8f4-44dc-973f-9ec234bcb62d
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column AgeGroup
+		dataType: string
+		lineageTag: c5bba4b5-a952-4ed8-8cee-f38612e192b4
+		summarizeBy: none
+		sourceColumn: AgeGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attrition
+		dataType: string
+		lineageTag: c2b20ccd-d27e-4519-8976-814480548be8
+		summarizeBy: none
+		sourceColumn: Attrition
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessTravel
+		dataType: string
+		lineageTag: 52f941d7-74cc-4c95-aaab-2f2629b55676
+		summarizeBy: none
+		sourceColumn: BusinessTravel
+
+		annotation SummarizationSetBy = Automatic
+
+	column DailyRate
+		dataType: int64
+		formatString: 0
+		lineageTag: ebbe1225-9b93-430d-8c8b-bf54fd45b75b
+		summarizeBy: sum
+		sourceColumn: DailyRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: 5bf694ec-0c62-4ffe-b030-379bc7061e36
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceFromHome
+		dataType: int64
+		formatString: 0
+		lineageTag: 624025c4-6921-47e0-a4b6-e0b54884e97c
+		summarizeBy: sum
+		sourceColumn: DistanceFromHome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education
+		dataType: int64
+		formatString: 0
+		lineageTag: ea62746f-d1fa-40a8-8bd7-54f73c3eab44
+		summarizeBy: sum
+		sourceColumn: Education
+
+		annotation SummarizationSetBy = Automatic
+
+	column EducationField
+		dataType: string
+		lineageTag: 404b7002-1d9b-41de-ac83-4f602a298457
+		summarizeBy: none
+		sourceColumn: EducationField
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 41683817-56ad-4218-9b6a-5e3a48b09b7f
+		summarizeBy: sum
+		sourceColumn: EmployeeCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: fed2bba9-fc80-45f9-8fac-766912f00d89
+		summarizeBy: sum
+		sourceColumn: EmployeeNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnvironmentSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: cfbf70ff-186b-40ef-b009-5360b911dbb7
+		summarizeBy: sum
+		sourceColumn: EnvironmentSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 281a2cc0-a261-493f-a1aa-e85081a7a4f7
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column HourlyRate
+		dataType: int64
+		formatString: 0
+		lineageTag: 58c3dc8f-9cf9-4a6e-9193-ef6bb09ed097
+		summarizeBy: sum
+		sourceColumn: HourlyRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobInvolvement
+		dataType: int64
+		formatString: 0
+		lineageTag: 251fb81e-12fb-4678-a356-14990db311c7
+		summarizeBy: sum
+		sourceColumn: JobInvolvement
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 66c83cce-a5b8-4c7d-8f0f-caf417530e44
+		summarizeBy: sum
+		sourceColumn: JobLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobRole
+		dataType: string
+		lineageTag: b0206876-076f-4c31-9de5-6878bc134ed2
+		summarizeBy: none
+		sourceColumn: JobRole
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: be15983c-99cd-44c8-ba77-ec74b7b5fce8
+		summarizeBy: sum
+		sourceColumn: JobSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: b2d24360-1107-4b0b-9458-79bdf170498a
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyIncome
+		dataType: int64
+		formatString: 0
+		lineageTag: fdb1b23b-f195-4810-a72c-0ac21a599c10
+		summarizeBy: sum
+		sourceColumn: MonthlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalarySlab
+		dataType: string
+		lineageTag: 6e1eb494-984e-46cb-8ce0-1303d9fdb4cd
+		summarizeBy: none
+		sourceColumn: SalarySlab
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyRate
+		dataType: int64
+		formatString: 0
+		lineageTag: 11e79bd6-c8c0-450b-9a70-6f03985d0c52
+		summarizeBy: sum
+		sourceColumn: MonthlyRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumCompaniesWorked
+		dataType: int64
+		formatString: 0
+		lineageTag: da459a8a-073b-439e-83af-8c59331a9196
+		summarizeBy: sum
+		sourceColumn: NumCompaniesWorked
+
+		annotation SummarizationSetBy = Automatic
+
+	column Over18
+		dataType: string
+		lineageTag: a10bf952-7ff5-41c0-95d6-4529f7faf8c2
+		summarizeBy: none
+		sourceColumn: Over18
+
+		annotation SummarizationSetBy = Automatic
+
+	column OverTime
+		dataType: string
+		lineageTag: 53a0dc76-0470-4b0f-b89b-036dada9a896
+		summarizeBy: none
+		sourceColumn: OverTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column PercentSalaryHike
+		dataType: int64
+		formatString: 0
+		lineageTag: d05a7453-f7c8-49d3-b16a-7d5eb8fc2cdb
+		summarizeBy: sum
+		sourceColumn: PercentSalaryHike
+
+		annotation SummarizationSetBy = Automatic
+
+	column PerformanceRating
+		dataType: int64
+		formatString: 0
+		lineageTag: f2ad8d50-82c8-4b30-82aa-e13d4ca82066
+		summarizeBy: sum
+		sourceColumn: PerformanceRating
+
+		annotation SummarizationSetBy = Automatic
+
+	column RelationshipSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: 08c3a59a-921a-4caf-8110-dfa937215d1e
+		summarizeBy: sum
+		sourceColumn: RelationshipSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardHours
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c7a893b-f00d-4bad-a372-d70062ae5fa7
+		summarizeBy: sum
+		sourceColumn: StandardHours
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockOptionLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 7984027b-e5f4-4538-befa-9394c95b8fa1
+		summarizeBy: sum
+		sourceColumn: StockOptionLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalWorkingYears
+		dataType: int64
+		formatString: 0
+		lineageTag: 32578b00-32c8-432c-9b9a-db3dcaa1fa29
+		summarizeBy: sum
+		sourceColumn: TotalWorkingYears
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrainingTimesLastYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d23ab7d-b705-42e6-8384-81f0fe2ac8c6
+		summarizeBy: sum
+		sourceColumn: TrainingTimesLastYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkLifeBalance
+		dataType: int64
+		formatString: 0
+		lineageTag: 636b0513-2a9f-4c87-91c3-53b0838d8b1e
+		summarizeBy: sum
+		sourceColumn: WorkLifeBalance
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearsAtCompany
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b065783-443b-4922-8720-85f35f7e657c
+		summarizeBy: sum
+		sourceColumn: YearsAtCompany
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearsInCurrentRole
+		dataType: int64
+		formatString: 0
+		lineageTag: 0107d5f6-141b-4498-b8ec-6b8e1e7121e0
+		summarizeBy: sum
+		sourceColumn: YearsInCurrentRole
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearsSinceLastPromotion
+		dataType: int64
+		formatString: 0
+		lineageTag: 98a6ffae-9b6e-4f42-b558-ac086ffeb82c
+		summarizeBy: sum
+		sourceColumn: YearsSinceLastPromotion
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttritionCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5307f37e-37c9-49d7-a074-ed6c4c832e5a
+		summarizeBy: sum
+		sourceColumn: AttritionCount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition HR_Analytics-4229b9d1-45fb-4c91-bebc-a4b61c7ba65b = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\CADMUS\Desktop\Employee Attrition Analysis\data\bronze\HR_Analytics.csv"),[Delimiter=",", Columns=38, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EmpID", type text}, {"Age", Int64.Type}, {"AgeGroup", type text}, {"Attrition", type text}, {"BusinessTravel", type text}, {"DailyRate", Int64.Type}, {"Department", type text}, {"DistanceFromHome", Int64.Type}, {"Education", Int64.Type}, {"EducationField", type text}, {"EmployeeCount", Int64.Type}, {"EmployeeNumber", Int64.Type}, {"EnvironmentSatisfaction", Int64.Type}, {"Gender", type text}, {"HourlyRate", Int64.Type}, {"JobInvolvement", Int64.Type}, {"JobLevel", Int64.Type}, {"JobRole", type text}, {"JobSatisfaction", Int64.Type}, {"MaritalStatus", type text}, {"MonthlyIncome", Int64.Type}, {"SalarySlab", type text}, {"MonthlyRate", Int64.Type}, {"NumCompaniesWorked", Int64.Type}, {"Over18", type text}, {"OverTime", type text}, {"PercentSalaryHike", Int64.Type}, {"PerformanceRating", Int64.Type}, {"RelationshipSatisfaction", Int64.Type}, {"StandardHours", Int64.Type}, {"StockOptionLevel", Int64.Type}, {"TotalWorkingYears", Int64.Type}, {"TrainingTimesLastYear", Int64.Type}, {"WorkLifeBalance", Int64.Type}, {"YearsAtCompany", Int64.Type}, {"YearsInCurrentRole", Int64.Type}, {"YearsSinceLastPromotion", Int64.Type}, {"YearsWithCurrManager", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"YearsWithCurrManager"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Duplicates","TravelRarely","Travel_Rarely",Replacer.ReplaceText,{"BusinessTravel"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"EmpID", type text}, {"Age", Int64.Type}, {"AgeGroup", type text}, {"Attrition", type text}, {"BusinessTravel", type text}, {"DailyRate", Int64.Type}, {"Department", type text}, {"DistanceFromHome", Int64.Type}, {"Education", Int64.Type}, {"EducationField", type text}, {"EmployeeCount", Int64.Type}, {"EmployeeNumber", Int64.Type}, {"EnvironmentSatisfaction", Int64.Type}, {"Gender", type text}, {"HourlyRate", Int64.Type}, {"JobInvolvement", Int64.Type}, {"JobLevel", Int64.Type}, {"JobRole", type text}, {"JobSatisfaction", Int64.Type}, {"MaritalStatus", type text}, {"MonthlyIncome", Int64.Type}, {"SalarySlab", type text}, {"MonthlyRate", Int64.Type}, {"NumCompaniesWorked", Int64.Type}, {"Over18", type text}, {"OverTime", type text}, {"PercentSalaryHike", Int64.Type}, {"PerformanceRating", Int64.Type}, {"RelationshipSatisfaction", Int64.Type}, {"StandardHours", Int64.Type}, {"StockOptionLevel", Int64.Type}, {"TotalWorkingYears", Int64.Type}, {"TrainingTimesLastYear", Int64.Type}, {"WorkLifeBalance", Int64.Type}, {"YearsAtCompany", Int64.Type}, {"YearsInCurrentRole", Int64.Type}, {"YearsSinceLastPromotion", Int64.Type}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type1", "AttritionCount", each if [Attrition] = "Yes" then 1 else 0),
+				    #"Personalização Adicionada" = Table.TransformColumnTypes(#"Added Conditional Column",{{"AttritionCount", Int64.Type}})
+				in
+				    #"Personalização Adicionada"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

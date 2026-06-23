@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "e596732035cde47e7d20",
+  "displayName": "Home",
+  "displayOption": "FitToPage",
+  "height": 1261,
+  "width": 1496,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "226L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

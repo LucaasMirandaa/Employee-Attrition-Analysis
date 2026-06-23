@@ -342,6 +342,233 @@
             border: none;
         }
 
+        .bi-dashboard {
+            padding: 22px 22px 26px;
+            background: var(--surface);
+        }
+
+        .bi-kpis {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            border-radius: var(--r);
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .bi-kpi {
+            background: var(--surface);
+            padding: 14px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bi-kpi-label {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--ink-3);
+            line-height: 1.3;
+        }
+
+        .bi-kpi-value {
+            font-family: var(--mono);
+            font-weight: 500;
+            font-size: clamp(18px, 2.1vw, 23px);
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .bi-kpi-value.accent {
+            color: var(--amber);
+        }
+
+        .bi-group {
+            margin-bottom: 26px;
+        }
+
+        .bi-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .bi-group-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .bi-chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .bi-chart-grid + .bi-panel {
+            margin-top: 16px;
+        }
+
+        .bi-panel {
+            border: 1px solid var(--rule);
+            border-radius: var(--r);
+            padding: 14px 16px 16px;
+            background: var(--surface);
+        }
+
+        .bi-panel-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .bi-panel-title {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: 0.01em;
+        }
+
+        .bi-panel-tag {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            padding: 2px 7px;
+            border-radius: 99px;
+            white-space: nowrap;
+        }
+
+        .bi-panel-insight {
+            font-size: 11.5px;
+            color: var(--ink-2);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .bi-svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .bi-svg text {
+            font-family: var(--mono);
+        }
+
+        .bi-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin-top: 10px;
+        }
+
+        .bi-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--ink-2);
+        }
+
+        .bi-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .bi-heat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--mono);
+            font-size: 11px;
+        }
+
+        .bi-heat-table th {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 9px;
+            color: var(--ink-3);
+            padding: 0 6px 8px;
+            text-align: center;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .bi-heat-table th:first-child {
+            text-align: left;
+            font-family: var(--sans);
+            font-size: 11px;
+            text-transform: none;
+            letter-spacing: normal;
+            color: var(--ink-3);
+        }
+
+        .bi-heat-table td {
+            padding: 6px;
+            text-align: center;
+            border-bottom: 1px solid var(--rule);
+            color: var(--ink);
+        }
+
+        .bi-heat-table td.bi-role-name {
+            text-align: left;
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .bi-heat-table td.bi-total {
+            font-weight: 500;
+            border-left: 1px solid var(--rule);
+            color: var(--ink);
+        }
+
+        .bi-heat-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 720px) {
+            .bi-kpis {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bi-chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bi-dashboard {
+                padding: 18px 14px 20px;
+            }
+
+            .bi-heat-table {
+                font-size: 9.5px;
+            }
+
+            .bi-heat-table td.bi-role-name {
+                font-size: 10.5px;
+                white-space: normal;
+            }
+        }
+
         .body-copy {
             font-size: 15px;
             color: var(--ink-2);
@@ -798,10 +1025,451 @@
                     <span class="browser-dot" style="background:#28C840;"></span>
                     <span class="browser-url">app.powerbi.com &middot; HR Analytics Report</span>
                 </div>
-                <iframe title="HR Analytics Dashboard"
-                    src="https://app.powerbi.com/reportEmbed?reportId=df046530-7bf9-45e7-84f5-49835a33f354&autoAuth=true&ctid=da49a844-e2e3-40af-86a6-c3819d704f49"
-                    allowFullScreen="true">
-                </iframe>
+                <div class="bi-dashboard" id="biDashboard">
+
+                    <div class="bi-kpis">
+                        <div class="bi-kpi">
+                            <span class="bi-kpi-label">Colaboradores</span>
+                            <span class="bi-kpi-value" id="biKpiHeadcount">—</span>
+                        </div>
+                        <div class="bi-kpi">
+                            <span class="bi-kpi-label">Taxa de Turnover</span>
+                            <span class="bi-kpi-value accent" id="biKpiRate">—</span>
+                        </div>
+                        <div class="bi-kpi">
+                            <span class="bi-kpi-label">Saídas</span>
+                            <span class="bi-kpi-value" id="biKpiExits">—</span>
+                        </div>
+                        <div class="bi-kpi">
+                            <span class="bi-kpi-label">Idade Média</span>
+                            <span class="bi-kpi-value" id="biKpiAge">—</span>
+                        </div>
+                        <div class="bi-kpi">
+                            <span class="bi-kpi-label">Salário Médio</span>
+                            <span class="bi-kpi-value" id="biKpiIncome">—</span>
+                        </div>
+                    </div>
+
+                    <div class="bi-group">
+                        <p class="bi-group-label">Distribuição de risco — idade · formação · cargo</p>
+                        <div class="bi-chart-grid">
+                            <div class="bi-panel">
+                                <div class="bi-panel-head">
+                                    <span class="bi-panel-title">Saídas por Faixa Etária</span>
+                                    <span class="bi-panel-tag">Idade</span>
+                                </div>
+                                <p class="bi-panel-insight">18–25 anos concentra o maior risco proporcional de saída.</p>
+                                <svg class="bi-svg" id="biChartAge" viewBox="0 0 460 210"></svg>
+                            </div>
+                            <div class="bi-panel">
+                                <div class="bi-panel-head">
+                                    <span class="bi-panel-title">Saídas por Formação</span>
+                                    <span class="bi-panel-tag">Educação</span>
+                                </div>
+                                <p class="bi-panel-insight">Life Sciences e Medical concentram a maior parte das saídas.</p>
+                                <svg class="bi-svg" id="biChartEdu" viewBox="0 0 460 190"></svg>
+                                <div class="bi-legend" id="biLegendEdu"></div>
+                            </div>
+                        </div>
+                        <div class="bi-panel">
+                            <div class="bi-panel-head">
+                                <span class="bi-panel-title">Concentração de Saídas por Cargo</span>
+                                <span class="bi-panel-tag">Cargo</span>
+                            </div>
+                            <p class="bi-panel-insight">Laboratory Technician e Sales Executive lideram as saídas — funções de linha de frente com alto custo de reposição.</p>
+                            <svg class="bi-svg" id="biChartRole" viewBox="0 0 940 260"></svg>
+                        </div>
+                    </div>
+
+                    <div class="bi-group">
+                        <p class="bi-group-label">Sinais de retenção — tempo de casa · salário · satisfação</p>
+                        <div class="bi-chart-grid">
+                            <div class="bi-panel">
+                                <div class="bi-panel-head">
+                                    <span class="bi-panel-title">Fragilidade por Tempo de Casa</span>
+                                    <span class="bi-panel-tag">Tenure</span>
+                                </div>
+                                <p class="bi-panel-insight">Pico no 1º ano (onboarding) e nova alta perto dos 5 anos (estagnação).</p>
+                                <svg class="bi-svg" id="biChartTenure" viewBox="0 0 460 200"></svg>
+                            </div>
+                            <div class="bi-panel">
+                                <div class="bi-panel-head">
+                                    <span class="bi-panel-title">Pressão Salarial por Gênero</span>
+                                    <span class="bi-panel-tag">Salário</span>
+                                </div>
+                                <p class="bi-panel-insight">Faixa "Upto 5k" concentra a maior parte do quadro de ambos os gêneros.</p>
+                                <svg class="bi-svg" id="biChartSalary" viewBox="0 0 460 200"></svg>
+                                <div class="bi-legend" id="biLegendSalary"></div>
+                            </div>
+                        </div>
+                        <div class="bi-panel">
+                            <div class="bi-panel-head">
+                                <span class="bi-panel-title">Cargo × Satisfação no Trabalho</span>
+                                <span class="bi-panel-tag">Soma de saídas</span>
+                            </div>
+                            <p class="bi-panel-insight">Células mais escuras nas colunas 1–2 com alto volume indicam prioridade de ação imediata.</p>
+                            <div style="overflow-x:auto;">
+                                <table class="bi-heat-table" id="biHeatTable"></table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+
+  /* ---- Precomputed aggregates from data/bronze/HR_Analytics.csv ----
+     (deduplicated, 1473 employees / 237 attritions — matches the
+     Power BI semantic model definitions in visualization/HR Analytics Dashboard.SemanticModel) */
+  var KPI = {
+    headcount: 1473,
+    rate: 0.1609,
+    exits: 237,
+    age: 36.9,
+    income: 6500
+  };
+
+  var AGE_GROUP = [
+    { k: "26-35", v: 116 },
+    { k: "18-25", v: 44 },
+    { k: "36-45", v: 43 },
+    { k: "46-55", v: 26 },
+    { k: "55+", v: 8 }
+  ];
+
+  var EDU_FIELD = [
+    { k: "Life Sciences", v: 89 },
+    { k: "Medical", v: 63 },
+    { k: "Marketing", v: 35 },
+    { k: "Technical Degree", v: 32 },
+    { k: "Other", v: 11 },
+    { k: "Human Resources", v: 7 }
+  ];
+
+  var JOB_ROLE = [
+    { k: "Laboratory Technician", v: 62 },
+    { k: "Sales Executive", v: 57 },
+    { k: "Research Scientist", v: 47 },
+    { k: "Sales Representative", v: 33 },
+    { k: "Human Resources", v: 12 },
+    { k: "Manufacturing Director", v: 10 },
+    { k: "Healthcare Representative", v: 9 },
+    { k: "Manager", v: 5 },
+    { k: "Research Director", v: 2 }
+  ];
+
+  var TENURE = [
+    { k: "0", v: 16 }, { k: "1", v: 59 }, { k: "2", v: 27 }, { k: "3", v: 20 },
+    { k: "4", v: 19 }, { k: "5", v: 21 }, { k: "6", v: 9 }, { k: "7", v: 11 },
+    { k: "8", v: 9 }, { k: "9", v: 8 }, { k: "10", v: 18 }, { k: "11+", v: 20 }
+  ];
+
+  var SALARY_GENDER = {
+    labels: ["Upto 5k", "5k-10k", "10k-15k", "15k+"],
+    male: [461, 265, 80, 78],
+    female: [290, 176, 68, 55]
+  };
+
+  var ROLE_SAT = [
+    { role: "Laboratory Technician", cells: [20, 8, 21, 13], total: 62 },
+    { role: "Sales Executive", cells: [16, 9, 18, 14], total: 57 },
+    { role: "Research Scientist", cells: [13, 10, 15, 9], total: 47 },
+    { role: "Sales Representative", cells: [7, 10, 9, 7], total: 33 },
+    { role: "Human Resources", cells: [5, 2, 3, 2], total: 12 },
+    { role: "Manufacturing Director", cells: [2, 2, 4, 2], total: 10 },
+    { role: "Healthcare Representative", cells: [2, 2, 1, 4], total: 9 },
+    { role: "Manager", cells: [1, 2, 1, 1], total: 5 },
+    { role: "Research Director", cells: [0, 1, 1, 0], total: 2 }
+  ];
+
+  var C = {
+    green: "#0B6E4F",
+    rust: "#A0662A",
+    slate: "#607080",
+    amber: "#8B6914",
+    ink2: "#5C5B57",
+    ink3: "#9B9A95",
+    rule: "#E2E0D9",
+    ink: "#1C1B18"
+  };
+  var SEQ = [C.green, C.rust, C.slate, C.amber, C.ink2, C.ink3];
+
+  function fmtInt(n) { return Math.round(n).toLocaleString("pt-BR"); }
+  function fmtPct(n) { return (n * 100).toFixed(1).replace(".", ",") + "%"; }
+  function fmtMoney(n) { return "$ " + fmtInt(n); }
+
+  function el(tag, attrs) {
+    var node = document.createElementNS(NS, tag);
+    for (var k in attrs) node.setAttribute(k, attrs[k]);
+    return node;
+  }
+
+  function text(x, y, str, attrs) {
+    var t = el("text", Object.assign({ x: x, y: y }, attrs || {}));
+    t.textContent = str;
+    return t;
+  }
+
+  /* ---------- KPI strip ---------- */
+  function renderKPIs() {
+    document.getElementById("biKpiHeadcount").textContent = fmtInt(KPI.headcount);
+    document.getElementById("biKpiRate").textContent = fmtPct(KPI.rate);
+    document.getElementById("biKpiExits").textContent = fmtInt(KPI.exits);
+    document.getElementById("biKpiAge").textContent = fmtInt(KPI.age) + " anos";
+    document.getElementById("biKpiIncome").textContent = fmtMoney(KPI.income);
+  }
+
+  /* ---------- Vertical column chart (Age Group) ---------- */
+  function renderColumnChart(svgId, data, opts) {
+    var svg = document.getElementById(svgId);
+    var vb = svg.viewBox.baseVal;
+    var W = vb.width, H = vb.height;
+    var padL = 4, padR = 4, padT = 14, padB = 28;
+    var chartW = W - padL - padR, chartH = H - padT - padB;
+    var max = Math.max.apply(null, data.map(function (d) { return d.v; }));
+    var n = data.length;
+    var gap = 14;
+    var barW = (chartW - gap * (n - 1)) / n;
+    var color = opts && opts.color ? opts.color : C.green;
+
+    /* gridlines */
+    [0, 0.5, 1].forEach(function (f) {
+      var y = padT + chartH * (1 - f);
+      svg.appendChild(el("line", { x1: padL, x2: padL + chartW, y1: y, y2: y, stroke: C.rule, "stroke-width": 1 }));
+    });
+
+    data.forEach(function (d, i) {
+      var x = padL + i * (barW + gap);
+      var h = max ? (d.v / max) * chartH : 0;
+      var y = padT + chartH - h;
+      svg.appendChild(el("rect", {
+        x: x, y: y, width: barW, height: h, rx: 2,
+        fill: color, "fill-opacity": 0.82
+      }));
+      svg.appendChild(text(x + barW / 2, y - 6, d.v, {
+        "text-anchor": "middle", "font-size": 11, fill: C.ink2
+      }));
+      svg.appendChild(text(x + barW / 2, padT + chartH + 16, d.k, {
+        "text-anchor": "middle", "font-size": 9.5, fill: C.ink3
+      }));
+    });
+  }
+
+  /* ---------- Horizontal bar chart (Job Role) ---------- */
+  function renderBarChartH(svgId, data) {
+    var svg = document.getElementById(svgId);
+    var vb = svg.viewBox.baseVal;
+    var W = vb.width, H = vb.height;
+    var labelW = 190, valueW = 30, padR = 8, padT = 4;
+    var chartW = W - labelW - valueW - padR;
+    var n = data.length;
+    var rowH = (H - padT) / n;
+    var barH = rowH * 0.56;
+    var max = Math.max.apply(null, data.map(function (d) { return d.v; }));
+
+    data.forEach(function (d, i) {
+      var y = padT + i * rowH + (rowH - barH) / 2;
+      var w = max ? (d.v / max) * chartW : 0;
+      svg.appendChild(text(labelW - 10, y + barH / 2 + 4, d.k, {
+        "text-anchor": "end", "font-size": 11, fill: C.ink, "font-family": "Inter, sans-serif"
+      }));
+      svg.appendChild(el("rect", {
+        x: labelW, y: y, width: chartW, height: barH, fill: C.rule
+      }));
+      svg.appendChild(el("rect", {
+        x: labelW, y: y, width: w, height: barH, rx: 2, fill: C.green, "fill-opacity": 0.82
+      }));
+      svg.appendChild(text(labelW + w + 8, y + barH / 2 + 4, d.v, {
+        "font-size": 11, fill: C.ink2
+      }));
+    });
+  }
+
+  /* ---------- Donut chart (Education Field) ---------- */
+  function renderDonut(svgId, legendId, data) {
+    var svg = document.getElementById(svgId);
+    var legend = document.getElementById(legendId);
+    var vb = svg.viewBox.baseVal;
+    var cx = 95, cy = vb.height / 2, r = 72, rInner = 44;
+    var total = data.reduce(function (s, d) { return s + d.v; }, 0);
+    var angle = -Math.PI / 2;
+
+    function point(a, rad) { return [cx + rad * Math.cos(a), cy + rad * Math.sin(a)]; }
+
+    data.forEach(function (d, i) {
+      var frac = d.v / total;
+      var a0 = angle;
+      var a1 = angle + frac * Math.PI * 2;
+      var large = (a1 - a0) > Math.PI ? 1 : 0;
+      var p0 = point(a0, r), p1 = point(a1, r);
+      var p2 = point(a1, rInner), p3 = point(a0, rInner);
+      var dStr = [
+        "M", p0[0], p0[1],
+        "A", r, r, 0, large, 1, p1[0], p1[1],
+        "L", p2[0], p2[1],
+        "A", rInner, rInner, 0, large, 0, p3[0], p3[1],
+        "Z"
+      ].join(" ");
+      svg.appendChild(el("path", { d: dStr, fill: SEQ[i % SEQ.length], "fill-opacity": 0.88 }));
+      angle = a1;
+    });
+
+    svg.appendChild(text(cx, cy - 4, fmtInt(total), { "text-anchor": "middle", "font-size": 19, fill: C.ink, "font-weight": 500 }));
+    svg.appendChild(text(cx, cy + 14, "saídas", { "text-anchor": "middle", "font-size": 9.5, fill: C.ink3 }));
+
+    data.forEach(function (d, i) {
+      var item = document.createElement("span");
+      item.className = "bi-legend-item";
+      var dot = document.createElement("span");
+      dot.className = "bi-legend-dot";
+      dot.style.background = SEQ[i % SEQ.length];
+      item.appendChild(dot);
+      var pct = ((d.v / total) * 100).toFixed(0);
+      item.appendChild(document.createTextNode(d.k + " · " + d.v + " (" + pct + "%)"));
+      legend.appendChild(item);
+    });
+  }
+
+  /* ---------- Area chart (Tenure) ---------- */
+  function renderAreaChart(svgId, data) {
+    var svg = document.getElementById(svgId);
+    var vb = svg.viewBox.baseVal;
+    var W = vb.width, H = vb.height;
+    var padL = 6, padR = 6, padT = 14, padB = 26;
+    var chartW = W - padL - padR, chartH = H - padT - padB;
+    var max = Math.max.apply(null, data.map(function (d) { return d.v; }));
+    var n = data.length;
+    var stepX = chartW / (n - 1);
+
+    [0, 0.5, 1].forEach(function (f) {
+      var y = padT + chartH * (1 - f);
+      svg.appendChild(el("line", { x1: padL, x2: padL + chartW, y1: y, y2: y, stroke: C.rule, "stroke-width": 1 }));
+    });
+
+    var pts = data.map(function (d, i) {
+      var x = padL + i * stepX;
+      var y = padT + chartH - (max ? (d.v / max) * chartH : 0);
+      return [x, y];
+    });
+
+    var line = "M " + pts.map(function (p) { return p[0] + " " + p[1]; }).join(" L ");
+    var area = line + " L " + (padL + chartW) + " " + (padT + chartH) + " L " + padL + " " + (padT + chartH) + " Z";
+
+    svg.appendChild(el("path", { d: area, fill: C.green, "fill-opacity": 0.12 }));
+    svg.appendChild(el("path", { d: line, fill: "none", stroke: C.green, "stroke-width": 1.75 }));
+
+    pts.forEach(function (p, i) {
+      if (i % 2 === 0 || data[i].k === "11+") {
+        svg.appendChild(el("circle", { cx: p[0], cy: p[1], r: 2.2, fill: C.green }));
+      }
+      svg.appendChild(text(p[0], padT + chartH + 16, data[i].k, {
+        "text-anchor": "middle", "font-size": 8.5, fill: C.ink3
+      }));
+    });
+  }
+
+  /* ---------- Grouped bar chart (Salary x Gender) ---------- */
+  function renderGroupedBars(svgId, legendId, ds) {
+    var svg = document.getElementById(svgId);
+    var legend = document.getElementById(legendId);
+    var vb = svg.viewBox.baseVal;
+    var W = vb.width, H = vb.height;
+    var padL = 6, padR = 6, padT = 14, padB = 28;
+    var chartW = W - padL - padR, chartH = H - padT - padB;
+    var n = ds.labels.length;
+    var groupGap = 18;
+    var groupW = (chartW - groupGap * (n - 1)) / n;
+    var barGap = 4;
+    var barW = (groupW - barGap) / 2;
+    var max = Math.max.apply(null, ds.male.concat(ds.female));
+
+    [0, 0.5, 1].forEach(function (f) {
+      var y = padT + chartH * (1 - f);
+      svg.appendChild(el("line", { x1: padL, x2: padL + chartW, y1: y, y2: y, stroke: C.rule, "stroke-width": 1 }));
+    });
+
+    ds.labels.forEach(function (lab, i) {
+      var gx = padL + i * (groupW + groupGap);
+      var mh = (ds.male[i] / max) * chartH;
+      var fh = (ds.female[i] / max) * chartH;
+      svg.appendChild(el("rect", { x: gx, y: padT + chartH - mh, width: barW, height: mh, rx: 2, fill: C.slate, "fill-opacity": 0.85 }));
+      svg.appendChild(el("rect", { x: gx + barW + barGap, y: padT + chartH - fh, width: barW, height: fh, rx: 2, fill: C.rust, "fill-opacity": 0.85 }));
+      svg.appendChild(text(gx + groupW / 2, padT + chartH + 16, lab, { "text-anchor": "middle", "font-size": 8.5, fill: C.ink3 }));
+    });
+
+    [["Masculino", C.slate], ["Feminino", C.rust]].forEach(function (entry) {
+      var item = document.createElement("span");
+      item.className = "bi-legend-item";
+      var dot = document.createElement("span");
+      dot.className = "bi-legend-dot";
+      dot.style.background = entry[1];
+      item.appendChild(dot);
+      item.appendChild(document.createTextNode(entry[0]));
+      legend.appendChild(item);
+    });
+  }
+
+  /* ---------- Heatmap table (Role x Satisfaction) ---------- */
+  function renderHeatTable(tableId, data) {
+    var table = document.getElementById(tableId);
+    var max = Math.max.apply(null, data.reduce(function (acc, r) { return acc.concat(r.cells); }, []));
+
+    var thead = document.createElement("thead");
+    var trh = document.createElement("tr");
+    ["Cargo", "1", "2", "3", "4", "Total"].forEach(function (h) {
+      var th = document.createElement("th");
+      th.textContent = h;
+      trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    var tbody = document.createElement("tbody");
+    data.forEach(function (row) {
+      var tr = document.createElement("tr");
+      var tdRole = document.createElement("td");
+      tdRole.className = "bi-role-name";
+      tdRole.textContent = row.role;
+      tr.appendChild(tdRole);
+
+      row.cells.forEach(function (v) {
+        var td = document.createElement("td");
+        td.textContent = v;
+        var t = max ? v / max : 0;
+        var alpha = 0.06 + t * 0.55;
+        td.style.background = "rgba(11,110,79," + alpha.toFixed(2) + ")";
+        if (t > 0.55) td.style.color = "#fff";
+        tr.appendChild(td);
+      });
+
+      var tdTotal = document.createElement("td");
+      tdTotal.className = "bi-total";
+      tdTotal.textContent = row.total;
+      tr.appendChild(tdTotal);
+
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  function init() {
+    renderKPIs();
+    renderColumnChart("biChartAge", AGE_GROUP, { color: C.green });
+    renderDonut("biChartEdu", "biLegendEdu", EDU_FIELD);
+    renderBarChartH("biChartRole", JOB_ROLE);
+    renderAreaChart("biChartTenure", TENURE);
+    renderGroupedBars("biChartSalary", "biLegendSalary", SALARY_GENDER);
+    renderHeatTable("biHeatTable", ROLE_SAT);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
             </div>
         </div>
 
